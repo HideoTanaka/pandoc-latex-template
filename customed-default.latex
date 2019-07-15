@@ -33,6 +33,9 @@ $for(classoption)$
   $classoption$$sep$,
 $endfor$
 ]{$documentclass$}
+% セクション名を第N章形式にする
+\renewcommand{\presectionname}{第}
+\renewcommand{\postsectionname}{章}
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
