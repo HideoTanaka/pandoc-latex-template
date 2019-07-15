@@ -1,6 +1,6 @@
 # pandoc-latex-template
 
-##目的
+## 目的
 
 Pandocを使ってMarkdownをPDF変換する．
 
