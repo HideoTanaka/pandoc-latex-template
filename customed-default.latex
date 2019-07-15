@@ -33,6 +33,14 @@ $for(classoption)$
   $classoption$$sep$,
 $endfor$
 ]{$documentclass$}
+% ヘッダとフッタの定義
+\usepackage{fancyhdr}
+\lhead{\thesection}
+\chead{}
+\rhead{Hideo Tanaka}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
 % セクション名を第N章形式にする
 \renewcommand{\presectionname}{第}
 \renewcommand{\postsectionname}{章}
