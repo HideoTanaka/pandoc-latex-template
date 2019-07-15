@@ -35,12 +35,16 @@ $endfor$
 ]{$documentclass$}
 % ヘッダとフッタの定義
 \usepackage{fancyhdr}
-\lhead{\thesection}
+\lhead{\nouppercase{\leftmark}}
 \chead{}
 \rhead{Hideo Tanaka}
 \lfoot{}
 \cfoot{\thepage}
 \rfoot{}
+\renewcommand{\footrulewidth}{0.4pt}
+% \sectionの前で改行
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
 % セクション名を第N章形式にする
 \renewcommand{\presectionname}{第}
 \renewcommand{\postsectionname}{章}
@@ -404,6 +408,7 @@ $if(beamer)$
 \frame{\titlepage}
 $else$
 \maketitle
+\thispagestyle{empty}
 $endif$
 $if(abstract)$
 \begin{abstract}
@@ -449,6 +454,7 @@ $endif$
 $if(has-frontmatter)$
 \mainmatter
 $endif$
+\pagestyle{fancy}
 $body$
 
 $if(has-frontmatter)$
