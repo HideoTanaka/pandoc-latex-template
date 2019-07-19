@@ -37,7 +37,7 @@ $endfor$
 \usepackage{fancyhdr}
 \lhead{\nouppercase{\leftmark}}
 \chead{}
-\rhead{Hideo Tanaka}
+\rhead{$if(rightmark)$$rightmark$$endif$}
 \lfoot{}
 \cfoot{\thepage}
 \rfoot{}
@@ -48,6 +48,8 @@ $endfor$
 % セクション名を第N章形式にする
 \renewcommand{\presectionname}{第}
 \renewcommand{\postsectionname}{章}
+% \paragraph前の黒四角を消す
+\renewcommand{\jsParagraphMark}{}
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
