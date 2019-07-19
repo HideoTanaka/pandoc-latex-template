@@ -17,3 +17,11 @@ Pandocを使ってMarkdownをPDF変換する．
   - それかchangelog.mdみたいなファイルに独立させて書くとか？ダサい．
 - 各見出しに番号を振る．
 
+## 実行コマンド
+
+完全に自分の環境用．
+
+```bash
+find . -name '*.md' -o -name 'header.yaml' | xargs cat | pandoc -o output.pdf --template=customed-default.tex --pdf-engine=lualatex -V documentclass=ltjsarticle
+```
+
