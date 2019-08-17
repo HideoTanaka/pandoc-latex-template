@@ -78,11 +78,49 @@ $endfor$
 % \sectionの前で改行
 \let\oldsection\section
 \renewcommand\section{\clearpage\oldsection}
-% セクション名を第N章形式にする
+% セクション名の形式を変えたい場合は設定
 \renewcommand{\presectionname}{}
 \renewcommand{\postsectionname}{}
 % \paragraph前の黒四角を消す
 \renewcommand{\jsParagraphMark}{}
+% titlepage改造
+%\newcommand{\subtitle}{$subtitle$}
+\newcommand{\customerPm}{$customerPm$様}
+\newcommand{\customerPl}{$customerPl$様}
+\newcommand{\ourPm}{$ourPm$}
+\newcommand{\ourPl}{$ourPl$}
+\newlength{\titlepagecellwidth}
+\settowidth{\titlepagecellwidth}{10truemm}
+\usepackage{array, ragged2e} % 表の最終列で\centeringを使うとバグるやつの修正のため
+\makeatletter
+\renewcommand{\maketitle}{%
+  \thispagestyle{empty} % ページ番号とか消す
+  \newpage\null
+  \vskip 15truemm
+  \begin{center}%
+    {\LARGE \@title \par}% タイトル
+    \vskip 70truemm
+    {\large \@date \par}% 日付
+    \vskip 10truemm
+    {\large \@author \par}% 著者
+  \end{center}%
+  \vskip 30truemm
+  \begin{flushright}
+    \footnotesize
+    \begin{tabular}[t]{|>{\centering}p{\titlepagecellwidth}|>{\centering}p{\titlepagecellwidth}|>{\centering}p{\titlepagecellwidth}|>{\Centering}p{\titlepagecellwidth}|} \hline
+      \multicolumn{2}{|c|}{貴社} & \multicolumn{2}{c|}{弊社} \\ \hline
+      PM & PL & PM & PL \\ \hline
+      \rule[-.5\titlepagecellwidth]{0mm}{\titlepagecellwidth}{\customerPm} & \rule[-.5\titlepagecellwidth]{0mm}{\titlepagecellwidth}{\customerPl} & \rule[-.5\titlepagecellwidth]{0mm}{\titlepagecellwidth}{\ourPm} & \rule[-.5\titlepagecellwidth]{0mm}{\titlepagecellwidth}{\ourPl} \\ \hline
+    \end{tabular}%
+  \vskip 1em
+  \end{flushright}
+
+  \par\vskip 1.5em
+  \ifvoid\@abstractbox\else\centerline{\box\@abstractbox}\vskip1.5em\fi
+  % 改ページする
+  \newpage
+}
+\makeatother
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
@@ -450,7 +488,7 @@ $else$
 \usepackage{etoolbox}
 \makeatletter
 \providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+  \apptocmd{\@title}{\par {\vskip 10truemm #1 \par}}{}{} % vskip入れる．文字サイズを変えない
 }
 \makeatother
 $endif$

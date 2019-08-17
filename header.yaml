@@ -1,9 +1,14 @@
 ---
-  title: Input title here.
-  author: Your Name
+  title: 〇〇案件 △△機能改修プロジェクト
+  subtitle: 開発計画書
+	# コメント書いてみる
+  date: \today
+  author: ほげほげ株式会社
+  customerPm: 山田
+  customerPl: 里田
+  ourPm: 稲田
+  ourPl: 飯田
   graphics: yes
-  toc: yes
-  numbersections: yes
-  secnumdepth: 3
   rightmark: Hideo Tanaka's Template
 ---
+
