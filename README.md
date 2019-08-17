@@ -44,7 +44,7 @@ Pandocを使ってMarkdownをPDF変換する．
 | title    | タイトル     |                                    |     |
 | subtitle | サブタイトル |                                    |     |
 | date     | 日付         | `\today`ってすれば現在日付になる． |     |
-| author   | 著者         |                                    | --> |
+| author   | 著者         |                                    || --> 
 
 ### ヘッダとフッタ
 
