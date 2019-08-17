@@ -33,6 +33,39 @@ $for(classoption)$
   $classoption$$sep$,
 $endfor$
 ]{$documentclass$}
+% インデント量変更
+% 左のインデント量
+% 前アキ 見出し上のスペース
+% 後アキ 見出し下のスペース 負にすると見出し後のスペース
+% section
+\makeatletter
+\renewcommand{\section}{%
+  \@startsection{section}%
+    {1}%
+    {\z@}%
+    {.2\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+    {.2\Cvs \@plus.3\Cdp}%
+    {\normalfont\LARGE\headfont}%
+}
+% subsection
+\renewcommand{\subsection}{%
+  \@startsection{subsection}%
+    {2}%
+    {\z@}%
+    {.4\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+    {.4\Cvs \@plus.3\Cdp}%
+    {\normalfont\Large\headfont}%
+}
+% subsubsection
+\renewcommand{\subsubsection}{%
+  \@startsection{subsubsection}%
+    {3}%
+    {\z@}%
+    {.2\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+    {.2\Cvs \@plus.3\Cdp}%
+    {\normalfont\large\headfont}%
+}
+\makeatother
 % ヘッダとフッタの定義
 \usepackage{fancyhdr}
 \lhead{\nouppercase{\leftmark}}
@@ -46,8 +79,8 @@ $endfor$
 \let\oldsection\section
 \renewcommand\section{\clearpage\oldsection}
 % セクション名を第N章形式にする
-\renewcommand{\presectionname}{第}
-\renewcommand{\postsectionname}{章}
+\renewcommand{\presectionname}{}
+\renewcommand{\postsectionname}{}
 % \paragraph前の黒四角を消す
 \renewcommand{\jsParagraphMark}{}
 $if(beamer)$
@@ -250,6 +283,44 @@ $if(beamer)$
 $endif$
 $if(listings)$
 \usepackage{listings}
+% JavaScriptの定義追加
+\usepackage{xcolor}
+\definecolor{script-bg}{rgb}{0.95,0.95,0.95}
+\definecolor{comment}{rgb}{0.565,0.912,0.585}
+\lstdefinelanguage{js}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, let, const, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{comment}\sffamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+  language=js,
+  backgroundcolor=\color{script-bg}, % 背景は薄めの灰色
+  %linewidth=0.9\textwidth, % 表示幅は本文の幅より若干狭く
+  %xleftmargin=0.1\textwidth,
+  %xrightmargin=0.1\textwidth, % もっといいやり方ないのかな・・・
+  extendedchars=true,
+  basicstyle=\footnotesize\ttfamily,
+  basewidth={0.5em,0.4em},
+  showstringspaces=false,
+  showspaces=false, % スペースを見せる or 見せない
+  numbers=left,
+  numberstyle=\footnotesize,
+  numbersep=9pt,
+  tabsize=2,
+  breaklines=true, % 長い行は自動的に改行させる（日本語はうまくいかない）
+  captionpos=b
+}
+% JavaScriptの定義追加 ここまで
 \newcommand{\passthrough}[1]{#1}
 \lstset{defaultdialect=[5.3]Lua}
 \lstset{defaultdialect=[x86masm]Assembler}
@@ -400,7 +471,6 @@ $if(logo)$
 \logo{\includegraphics{$logo$}}
 $endif$
 $endif$
-
 \begin{document}
 $if(has-frontmatter)$
 \frontmatter
