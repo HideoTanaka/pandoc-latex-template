@@ -2,7 +2,7 @@
 
 ## 目的
 
-aiueo-kakikukeko-a
+aiueo-kakikukeko-sashisuseso
 Pandocを使ってMarkdownをPDF変換する．
 
 デフォルトのテンプレートだと細かいところで要求を満たせないので，カスタマイズして要求通りのPDFに仕上げられるようにする．
