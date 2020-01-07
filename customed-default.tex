@@ -83,16 +83,30 @@ $endfor$
 \renewcommand{\postsectionname}{}
 % \paragraph前の黒四角を消す
 \renewcommand{\jsParagraphMark}{}
+% 箇条書きの記号をすべて中黒に統一
+\renewcommand{\labelitemi}{\textbullet}
+\renewcommand{\labelitemii}{\textbullet}
+\renewcommand{\labelitemiii}{\textbullet}
+\renewcommand{\labelitemiv}{\textbullet}
+\usepackage{array, ragged2e} % 表の最終列で\centeringを使うとバグるやつの修正のため
+% 画像の挿入位置を常に記述した場所（Here）にする．
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
 % titlepage改造
 %\newcommand{\subtitle}{$subtitle$}
+\makeatletter
+\newlength{\titlepagecellwidth}
+\settowidth{\titlepagecellwidth}{10truemm}
 \newcommand{\customerPm}{$customerPm$様}
 \newcommand{\customerPl}{$customerPl$様}
 \newcommand{\ourPm}{$ourPm$}
 \newcommand{\ourPl}{$ourPl$}
-\newlength{\titlepagecellwidth}
-\settowidth{\titlepagecellwidth}{10truemm}
-\usepackage{array, ragged2e} % 表の最終列で\centeringを使うとバグるやつの修正のため
-\makeatletter
 \renewcommand{\maketitle}{%
   \thispagestyle{empty} % ページ番号とか消す
   \newpage\null
