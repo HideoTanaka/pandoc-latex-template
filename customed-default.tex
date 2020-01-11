@@ -407,10 +407,10 @@ $else$
 $endif$
 $endif$
 $if(graphics)$
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\def\maxwidth{\ifdim\Gin@nat@width>0.9\linewidth0.9\linewidth\else\Gin@nat@width\fi} % 0.9倍に収める
+\def\maxheight{\ifdim\Gin@nat@height>0.9\textheight0.9\textheight\else\Gin@nat@height\fi} % 0.9倍に収める
 \makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
@@ -506,7 +506,7 @@ $else$
 \usepackage{etoolbox}
 \makeatletter
 \providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\vskip 10truemm #1 \par}}{}{} % vskip入れる．文字サイズを変えない
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
 }
 \makeatother
 $endif$
